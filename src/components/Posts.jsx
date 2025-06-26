@@ -1,5 +1,5 @@
 // src/components/Posts.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function PostsList() {
   const [posts, setPosts] = useState([]);

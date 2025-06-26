@@ -1,5 +1,5 @@
 import React from 'react'
-import ProductsList from '../components/Products.jsx'
+import PostsList from '../components/Posts.jsx'
 import Header from '../components/Header.jsx' 
 import Footer from '../components/Footer.jsx'
 
