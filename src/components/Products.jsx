@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-function ProductsList({initialProducts, initialTotal}) {
-  const [products, setProducts] = useState(initialProducts);
+function ProductsList() {
+  const [products, setProducts] = useState([]);
+  const [initialTotal, setInitialTotal] = useState(0);
   const [skip, setSkip] = useState(0);
   const [loading, setLoading] = useState(false);
   const totalPages = Math.ceil(initialTotal / 8);
@@ -15,6 +16,7 @@ function ProductsList({initialProducts, initialTotal}) {
       }
       const data = await response.json();
       setProducts(data.products);
+      setInitialTotal(data.total);
       setSkip(newSkip);
     } catch (error) {
       console.error('Error fetching products:', error);
@@ -22,6 +24,10 @@ function ProductsList({initialProducts, initialTotal}) {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchProducts(0);
+  }, []);
   const handleNextPage = () => {
     if (skip + 8 < initialTotal) {
       fetchProducts(skip + 8);

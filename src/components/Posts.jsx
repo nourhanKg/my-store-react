@@ -1,9 +1,9 @@
 // src/components/Posts.jsx
 import React, { useState } from 'react';
 
-
-function PostsList({ initialPosts, initialTotal}) {
-  const [posts, setPosts] = useState(initialPosts);
+function PostsList() {
+  const [posts, setPosts] = useState([]);
+  const [initialTotal, setInitialTotal] = useState(0);
   const [skip, setSkip] = useState(0);
   const [loading, setLoading] = useState(false);
   const totalPages = Math.ceil(initialTotal / 8);
@@ -17,6 +17,7 @@ function PostsList({ initialPosts, initialTotal}) {
       }
       const data = await response.json();
       setPosts(data.posts);
+      setInitialTotal(data.total);
       setSkip(newSkip);
     } catch (error) {
       console.error('Error fetching posts:', error);
@@ -24,6 +25,10 @@ function PostsList({ initialPosts, initialTotal}) {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchPosts(0);
+  }, []);
 
   const handleNextPage = () => {
     if (skip + 8 < initialTotal) {
