@@ -6,18 +6,15 @@ export default function HomePage() {
     <>
         <Header/>
             <div className="home-content">
-                <h1>Welcome to Astro SSG Home Page!</h1>
+                <h1>Welcome to React Home Page!</h1>
                 <p>
-                    This page is generated statically at build time for maximum performance.
-                    It's perfect for content that doesn't change frequently.
+                    This page is generated on the client side with a shell Html.
                 </p>
                 <p>
-                    Even though the project's default is Server-Side Rendering, we've explicitly
-                    marked this page for Static Site Generation using `export const prerender = true;`
-                    in its frontmatter.
+                    This could be bad for SEO and performance metrics. But is best for higher interactivity.
                 </p>
                 <p>
-                    The header and footer are React components(Islands), but Astro renders them to static HTML by default, unless you specify a `client:` directive for interactivity.
+                    All components are Client-side rendered.
                 </p>
             </div>
 		<Footer/>
